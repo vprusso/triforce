@@ -1,3 +1,5 @@
+"""Numeric constants."""
+
 from math import sqrt
 
 

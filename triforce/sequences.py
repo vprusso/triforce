@@ -1,3 +1,5 @@
+"""Integer sequences used to generate triangular arrays."""
+
 from math import floor
 from triforce.constants import PHI, PHI2
 
