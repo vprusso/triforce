@@ -1,5 +1,6 @@
 from triforce.sequences import (
     fibonacci,
+    compound_wythoff,
     lower_wythoff,
     upper_wythoff,
 )
@@ -70,6 +71,16 @@ class Triangle:
     def mod_triangle(self, k: int) -> list[list[int]]:
         """Calculate the triangle with entries modulo k."""
         return [[val % k for val in row] for row in self.triangle]
+    
+    def middle_entries(self) -> list[int]:
+        """Return the middle entries for rows with an odd number of elements."""
+        middle_entries = []
+        for row in self.triangle:
+            if len(row) % 2 == 1:
+                # Row has an odd number of elements, so get the middle element
+                middle_index = len(row) // 2
+                middle_entries.append(row[middle_index])
+        return middle_entries
 
     def is_symmetric(self) -> bool:
         """Check if the triangle is symmetric."""
@@ -128,6 +139,50 @@ class Triangle:
         return ret
 
 
+class BellTriangle(Triangle):
+    def generate_triangle(self) -> list[list[int]]:
+        """Generate Bell's triangle up to row n."""
+        triangle = [[1]]  # Initialize with the first row
+        
+        for i in range(1, self.n):
+            row = [triangle[i-1][-1]]  # First element is the last element of the previous row
+            for j in range(1, i + 1):
+                row.append(row[-1] + triangle[i-1][j-1])
+            triangle.append(row)
+        
+        return triangle
+
+
+class CatalanTriangle(Triangle):
+    def generate_triangle(self) -> list[list[int]]:
+        """Generate Catalan's triangle up to row n."""
+        triangle = [[1]]  # Initialize with the first row
+        
+        for i in range(1, self.n):
+            row = [1]  # The first element of each row is always 1
+            for j in range(1, i + 1):
+                row.append(triangle[i-1][j-1] + row[j-1])
+            triangle.append(row)
+        
+        return triangle
+
+
+class FloydsTriangle(Triangle):
+    def generate_triangle(self) -> list[list[int]]:
+        """Generate Floyd's triangle up to row n."""
+        triangle = []
+        num = 1  # Start counting from 1
+        
+        for i in range(1, self.n + 1):
+            row = []
+            for _ in range(i):
+                row.append(num)
+                num += 1
+            triangle.append(row)
+        
+        return triangle
+
+
 class HosoyaTriangle(Triangle):
     def generate_triangle(self) -> list[list[int]]:
         """Generate the Hosoya triangle up to row n."""
@@ -154,8 +209,16 @@ class PascalTriangle(Triangle):
         return triangle
 
 
-
 class WythoffTriangle(Triangle):
+    def __init__(self, n: int, recurrence_function=None):
+        """Initialize the Wythoff triangle with n rows and a custom recurrence function."""
+        self.recurrence_function = recurrence_function or self.default_fibonacci_recurrence
+        super().__init__(n)
+
+    def default_fibonacci_recurrence(self, triangle, i, j):
+        """Default recurrence: Fibonacci-style recurrence for Wythoff triangle."""
+        return triangle[i-1][j-1] + triangle[i-1][j]
+
     def generate_triangle(self) -> list[list[int]]:
         """Generate the Wythoff triangle up to row n using Fibonacci recurrence."""
         triangle = []
@@ -171,8 +234,7 @@ class WythoffTriangle(Triangle):
 
             # Middle elements: Fill using Fibonacci recurrence
             for j in range(1, i):
-                # Fibonacci recurrence: current element is the sum of the two elements above it
-                row.append(triangle[i-1][j-1] + triangle[i-1][j])
+                row.append(self.recurrence_function(triangle, i, j))
 
             # Last element: upper Wythoff sequence
             if i > 0:

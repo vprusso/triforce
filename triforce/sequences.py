@@ -66,3 +66,8 @@ def lower_wythoff(n: int):
 def upper_wythoff(n: int):
     """OEIS-A001950: Generate the n-th term of the upper Wythoff sequence."""
     return floor(n * PHI2)
+
+
+def compound_wythoff(n: int):
+    """OEIS-A003622: Generate the n-th term of the compound Wythoff sequence."""
+    return floor(n * PHI2) - 1

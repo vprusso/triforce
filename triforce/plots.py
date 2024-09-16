@@ -1,11 +1,16 @@
-from triforce.triangles import PascalTriangle
+from triforce.triangles import *
 import matplotlib.pyplot as plt
 import numpy as np
 
 
+def product_recurrence(triangle, i, j):
+    """Custom recurrence: Product of the two elements above."""
+    return triangle[i-1][j-1] * triangle[i-1][j]
+
+
 def sierpinski_from_pascals(n_rows):
     """Generate a grid of values 0 (even) and 1 (odd) based on Pascal's triangle."""
-    pascals_triangle = PascalTriangle(n_rows).generate_triangle()
+    pascals_triangle = WythoffTriangle(n_rows, recurrence_function=product_recurrence).generate_triangle()
     grid = np.zeros((n_rows, n_rows), dtype=int)
     for i in range(n_rows):
         for j in range(i + 1):
@@ -20,6 +25,6 @@ def plot_sierpinski(grid):
     plt.show()
 
 # Example usage
-n_rows = 64  # Number of rows in Pascal's triangle
+n_rows = 40  # Number of rows in Pascal's triangle
 sierpinski_grid = sierpinski_from_pascals(n_rows)
 plot_sierpinski(sierpinski_grid)
