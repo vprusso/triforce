@@ -1,30 +1,23 @@
-from triforce.triangles import *
+from triforce.triangle import Triangle
 import matplotlib.pyplot as plt
 import numpy as np
 
 
-def product_recurrence(triangle, i, j):
-    """Custom recurrence: Product of the two elements above."""
-    return triangle[i-1][j-1] * triangle[i-1][j]
-
-
-def sierpinski_from_pascals(n_rows):
-    """Generate a grid of values 0 (even) and 1 (odd) based on Pascal's triangle."""
-    pascals_triangle = WythoffTriangle(n_rows, recurrence_function=product_recurrence).generate_triangle()
-    grid = np.zeros((n_rows, n_rows), dtype=int)
-    for i in range(n_rows):
+def even_odd_plot(triangle: Triangle):
+    """Generate a grid of values 0 (even) and 1 (odd) based on triangle."""
+    n = triangle.n
+    grid = np.zeros((n, n), dtype=int)
+    for i in range(n):
         for j in range(i + 1):
-            grid[i, j] = pascals_triangle[i][j] % 2  # 1 for odd, 0 for even
-    return grid
+            grid[i, j] = triangle[i][j] % 2  # 1 for odd, 0 for even
 
-def plot_sierpinski(grid):
-    """Plot the Sierpinski triangle pattern using matplotlib."""
     plt.figure(figsize=(6, 6))
-    plt.imshow(grid, cmap='binary', interpolation='none')  # 'binary' colormap: 0 -> black, 1 -> white
-    plt.axis('off')  # Turn off axes for a cleaner look
+    # 'binary' colormap: 0 -> black, 1 -> white
+    plt.imshow(grid, cmap="binary", interpolation="none")
+    # Turn off axes for a cleaner look
+    plt.axis("off")
     plt.show()
 
-# Example usage
-n_rows = 40  # Number of rows in Pascal's triangle
-sierpinski_grid = sierpinski_from_pascals(n_rows)
-plot_sierpinski(sierpinski_grid)
+#n = 400
+#triangle = PascalTriangle(n)
+#even_odd_plot(triangle)

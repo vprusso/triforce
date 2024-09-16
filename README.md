@@ -84,6 +84,17 @@ class WythoffTriangle(Triangle):
         return triangle
 ```
 
+One can also visualize properties of the triangles by plotting. Here is an example of visualizing Pascal's triangle such
+that the even and odd terms are replaced by black and white pixels, respectively.
+
+```python3
+triangle = PascalTriangle(n=400)
+even_odd_plot(triangle)
+```
+
+![even-odd plot for Pascal's triangle](https://github.com/vprusso/triforce/tree/master/static/pascal_even_odd_plot.png)
+
+
 ## Installation
 Triforce is available on PyPI, and can be installed with
 ```

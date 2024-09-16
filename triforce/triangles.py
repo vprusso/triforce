@@ -80,14 +80,9 @@ class PascalTriangle(Triangle):
 
 
 class WythoffTriangle(Triangle):
-    def __init__(self, n: int, recurrence_function=None):
+    def __init__(self, n: int):
         """Initialize the Wythoff triangle with n rows and a custom recurrence function."""
-        self.recurrence_function = recurrence_function or self.default_fibonacci_recurrence
         super().__init__(n)
-
-    def default_fibonacci_recurrence(self, triangle, i, j):
-        """Default recurrence: Fibonacci-style recurrence for Wythoff triangle."""
-        return triangle[i-1][j-1] + triangle[i-1][j]
 
     def generate_triangle(self) -> list[list[int]]:
         """Generate the Wythoff triangle up to row n using Fibonacci recurrence."""
