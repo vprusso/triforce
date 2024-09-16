@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "triforce"
+version = "0.1.0"
+description = ""
+authors = ["vprusso <vincentrusso1@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^2.1.1"
+jupyter = "^1.1.1"
+matplotlib = "^3.9.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
