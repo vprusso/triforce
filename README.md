@@ -88,11 +88,14 @@ One can also visualize properties of the triangles by plotting. Here is an examp
 that the even and odd terms are replaced by black and white pixels, respectively.
 
 ```python3
-triangle = PascalTriangle(n=400)
-even_odd_plot(triangle)
+from triforce.plots import highlight_plot
+from triforce.numerics import is_even
+
+triangle = PascalTriangle(n=510, is_even)
+highlight_plot(triangle)
 ```
 
-![even-odd plot for Pascal's triangle](https://github.com/vprusso/triforce/tree/master/static/pascal_even_odd_plot.png)
+![even-odd plot for Pascal's triangle](./static/pascal_parity_plot.png)
 
 
 ## Installation

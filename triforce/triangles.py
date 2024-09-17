@@ -79,6 +79,37 @@ class PascalTriangle(Triangle):
         return triangle
 
 
+class FibonacciPascalTriangle(Triangle):
+    """Defines the Fibonacci-Pascal Triangle: Fibonacci Quart. 60 (2022), no. 5, 372–383,"""
+    
+    def generate_triangle(self) -> list[list[int]]:
+        """Generate the Fibonacci-Pascal Triangle up to n rows (iterative version)."""
+        if self.n == 0:
+            return []
+        
+        # Initialize the triangle with the first row
+        triangle = [[1]]
+        
+        # Iteratively generate the Fibonacci-Pascal Triangle for rows 2 to n
+        for row_num in range(2, self.n + 1):
+            new_row = [fibonacci(row_num)]  # Start the new row with F(n)
+            
+            # Get the last row from the triangle
+            last_row = triangle[-1]
+            
+            # Generate the inner elements of the row by summing adjacent elements in the last row
+            for i in range(len(last_row) - 1):
+                new_row.append(last_row[i] + last_row[i + 1])
+            
+            # Append the Fibonacci value at the end of the row
+            new_row.append(fibonacci(row_num))
+            
+            # Add the new row to the triangle
+            triangle.append(new_row)
+        
+        return triangle
+
+
 class WythoffTriangle(Triangle):
     def __init__(self, n: int):
         """Initialize the Wythoff triangle with n rows and a custom recurrence function."""
@@ -109,3 +140,7 @@ class WythoffTriangle(Triangle):
             triangle.append(row)
 
         return triangle
+
+
+t = HosoyaTriangle(10)
+print(t)
