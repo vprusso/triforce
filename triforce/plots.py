@@ -25,5 +25,5 @@ if __name__ == "__main__":
     from triforce.numeric import *
 
     n = 510
-    triangle = PascalTriangle(n)
+    triangle = WythoffTriangle(n)
     highlight_plot(triangle, is_even)

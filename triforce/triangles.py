@@ -1,8 +1,6 @@
 from triforce.sequences import (
     fibonacci,
-    compound_wythoff,
-    lower_wythoff,
-    upper_wythoff,
+    wythoff_term,
 )
 from triforce.triangle import Triangle
 
@@ -78,7 +76,6 @@ class PascalTriangle(Triangle):
             triangle.append(row)
         return triangle
 
-
 class FibonacciPascalTriangle(Triangle):
     """Defines the Fibonacci-Pascal Triangle: Fibonacci Quart. 60 (2022), no. 5, 372–383,"""
     
@@ -111,36 +108,14 @@ class FibonacciPascalTriangle(Triangle):
 
 
 class WythoffTriangle(Triangle):
-    def __init__(self, n: int):
-        """Initialize the Wythoff triangle with n rows and a custom recurrence function."""
-        super().__init__(n)
+    """Defines the Wythoff Triangle based on the top-left to bottom-right reading of the Wythoff Array."""
 
     def generate_triangle(self) -> list[list[int]]:
-        """Generate the Wythoff triangle up to row n using Fibonacci recurrence."""
+        """Generate the Wythoff triangle up to row n."""
         triangle = []
-
-        for i in range(self.n):
+        for i in range(1, self.n + 1):
             row = []
-            
-            # First element: lower Wythoff sequence
-            if i == 0:
-                row.append(0)  # Starting element for Wythoff triangle
-            else:
-                row.append(lower_wythoff(i))
-
-            # Middle elements: Fill using Fibonacci recurrence
-            for j in range(1, i):
-                # Fibonacci recurrence: current element is the sum of the two elements above it
-                row.append(triangle[i-1][j-1] + triangle[i-1][j])
-
-            # Last element: upper Wythoff sequence
-            if i > 0:
-                row.append(upper_wythoff(i))
-
+            for j in range(1, i + 1):
+                row.append(wythoff_term(j, i - j + 1))
             triangle.append(row)
-
         return triangle
-
-
-t = HosoyaTriangle(10)
-print(t)

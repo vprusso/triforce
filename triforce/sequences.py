@@ -14,6 +14,19 @@ def fibonacci(n: int) -> int:
     return b
 
 
+def tribonacci(n: int) -> int:
+    """Generate the n-th Tribonacci number."""
+    if n == 0:
+        return 0
+    elif n == 1 or n == 2:
+        return 0 if n == 1 else 1
+
+    a, b, c = 0, 0, 1
+    for _ in range(3, n + 1):
+        a, b, c = b, c, a + b + c
+    return c
+
+
 def lucas(n: int) -> int:
     """OEIS-A000032: Generate nth Lucas number."""
     if n == 0:
@@ -73,3 +86,8 @@ def upper_wythoff(n: int):
 def compound_wythoff(n: int):
     """OEIS-A003622: Generate the n-th term of the compound Wythoff sequence."""
     return floor(n * PHI2) - 1
+
+
+def wythoff_term(n: int, k: int) -> int:
+    """OEIS-:"""
+    return (n - 1) * fibonacci(k) + fibonacci(k + 1) * floor(n * PHI)
