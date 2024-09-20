@@ -13,11 +13,34 @@ class Triangle:
         return self.triangle[key]
 
     def __str__(self):
+        print(self.triangle)
         return self.format_triangle()
 
     def generate_triangle(self) -> list[list[int]]:
         """Generate the triangle. This should be overridden by subclasses."""
         raise NotImplementedError("Subclasses should implement this method to generate specific triangles.")
+
+    def rising_diagonal(self, row_index: int) -> list[int]:
+        """Extract the rising diagonal starting from the leftmost element of the specified row."""
+        diagonal = []
+        row, col = row_index, 0  # Start at the leftmost element of the specified row
+
+        # Traverse diagonally up-right
+        while row >= 0 and col < len(self.triangle[row]):
+            diagonal.append(self.triangle[row][col])
+            row -= 1  # Move up
+            col += 1  # Move right
+
+        return diagonal
+
+    def rising_diagonal_sums(self) -> list[int]:
+        """Calculate the sum of the elements in each rising diagonal."""
+        sums = []
+        for i in range(self.n):
+            diag = self.rising_diagonal(i)
+            sums.append(sum(diag))
+        return sums
+
 
     def flatten(self) -> list[int]:
         """Flatten the triangle into a 1D list."""
@@ -66,7 +89,7 @@ class Triangle:
         """Calculate the triangle with entries modulo k."""
         return [[val % k for val in row] for row in self.triangle]
     
-    def middle_entries(self) -> list[int]:
+    def center(self) -> list[int]:
         """Return the middle entries for rows with an odd number of elements."""
         middle_entries = []
         for row in self.triangle:

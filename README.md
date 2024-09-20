@@ -13,38 +13,42 @@ Triforce is suite of tools for the numerical exploration of triangular arrays. I
 triangular arrays (i.e. Pascal's triangle, the Hosoya triangle, Bell's triangle, etc.) and also to define your own
 triangle via specifying generating functions.
 
-For example, the following code allows you to define the [Hosoya
-Triangle](https://en.wikipedia.org/wiki/Hosoya%27s_triangle) for a given number of rows. You can use the functionality
-of triforce to investigate various numerical properties of the triangle.
+For example, the following code allows you to define Pascal's Triangle for a given number of rows. You can use the
+functionality of triforce to investigate various numerical properties of the triangle.
 
 ```python3
->>> from triforce.triangles import HosoyaTriangle
->>> triangle = HosoyaTriangle(10)
+>>> from triforce.triangles import PascalTriangle
+>>> triangle = PascalTriangle(10)
 >>> 
 >>> # Print the output as a triangular shape:
 >>> print(triangle)
-                      1
-                    1    1
-                 2    1    2
-               3    2    2    3
-            5    3    4    3    5
-          8    5    6    6    5    8
-       13   8    10   9    10   8    13
-     21   13   16   15   15   16   13   21
-  34   21   26   24   25   24   26   21   34
-55   34   42   39   40   40   39   42   34   55
+                           1 
+                         1     1 
+                      1     2     1 
+                   1     3     3     1 
+                1     4     6     4     1 
+             1     5    10    10     5     1 
+          1     6    15    20    15     6     1 
+       1     7    21    35    35    21     7     1 
+    1     8    28    56    70    56    28     8     1 
+ 1     9    36    84    126   126   84    36     9     1 
 
->>> # Extract the right-most diagonal of the triangle
+>>> # Extract the right-most diagonal of the triangle:
 >>> print(triangle.diagonal(diagonal_index=0, direction="right"))
-[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
->>> # Extract the second-to-the-right-most diagonal of the triangle
+>>> # Extract the second-to-the-right-most diagonal of the triangle:
 >>> print(triangle.diagonal(diagonal_index=1, direction="right"))
-[1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
 
->>> # Extract the middle entries of the triangle
->>> print(triangle.middle_entries())
-[1, 1, 4, 9, 25]
+>>> # Extract the center entries of the triangle:
+>>> print(triangle.center())
+[1, 2, 6, 20, 70]
+
+>>> Extract row sums:
+>>> print(triangle.row_sums())
+[1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+
 ```
 
 You can also define your own triangular array by creating a class that inherits from the `Triangle` class
@@ -53,10 +57,6 @@ You can also define your own triangular array by creating a class that inherits 
 from triforce.triangle import Triangle
 
 class WythoffTriangle(Triangle):
-    def __init__(self, n: int, recurrence_function=None):
-        """Initialize the Wythoff triangle with n rows and a custom recurrence function."""
-        super().__init__(n)
-
     def generate_triangle(self) -> list[list[int]]:
         """Generate the Wythoff triangle up to row n using Fibonacci recurrence."""
         triangle = []

@@ -91,3 +91,13 @@ def compound_wythoff(n: int):
 def wythoff_term(n: int, k: int) -> int:
     """OEIS-:"""
     return (n - 1) * fibonacci(k) + fibonacci(k + 1) * floor(n * PHI)
+
+
+def triangular(n: int) -> list[int]:
+    """OEIS-A000217: Triangular numbers."""
+    return [i * (i + 1) // 2 for i in range(1, n + 1)]
+
+
+def tetrahedral(n: int) -> list[int]:
+    """OEIS-A356095: Tetrahedral numbers"""
+    return [i * (i + 1) * (i + 2) // 6 for i in range(1, n + 1)]

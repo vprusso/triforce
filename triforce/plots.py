@@ -1,3 +1,4 @@
+"""Plotting for triangles and pyramids."""
 from typing import Callable
 
 from triforce.triangle import Triangle
