@@ -1,7 +1,8 @@
-from triforce.triangles import LucasPascalTriangle, WythoffTriangle
+"""Lucas-Pascal triangle example."""
+from triforce.triangles import LucasPascalTriangle
 
 
-triangle = WythoffTriangle(20)
+triangle = LucasPascalTriangle(20)
 print(triangle)
 print(triangle.row_sums())
 print(triangle.center())

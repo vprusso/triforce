@@ -2,6 +2,7 @@
 
 
 class Pyramid:
+    """Base Pyramid class."""
     def __init__(self, n: int):
         """Initialize the pyramid with n layers."""
         self.n = n

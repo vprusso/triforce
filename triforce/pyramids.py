@@ -1,9 +1,11 @@
+"""Implementations of Pyramids."""
 from triforce.pyramid import Pyramid
 from triforce.sequences import fibonacci
 from triforce.numeric import trinomial
 
 
 class PascalPyramid(Pyramid):
+    """Generates Pascal Pyramid."""
     def generate_pyramid(self) -> list[list[list[int]]]:
         """Generate Pascal's Pyramid up to n layers."""
         pyramid = []
@@ -17,6 +19,7 @@ class PascalPyramid(Pyramid):
 
 
 class HosoyaPyramid(Pyramid):
+    """Generates Hosoya Pyramid."""
     def generate_pyramid(self) -> list[list[list[int]]]:
         """Generate Hosoya's Pyramid up to n layers."""
         pyramid = []

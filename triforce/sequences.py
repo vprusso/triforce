@@ -18,7 +18,7 @@ def tribonacci(n: int) -> int:
     """Generate the n-th Tribonacci number."""
     if n == 0:
         return 0
-    elif n == 1 or n == 2:
+    if n in [1, 2]:
         return 0 if n == 1 else 1
 
     a, b, c = 0, 0, 1

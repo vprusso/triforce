@@ -1,6 +1,7 @@
 """Primary Triangle class."""
 
 class Triangle:
+    """Base Triangle class."""
     def __init__(self, n: int):
         """Initialize the triangle with n rows."""
         self.n = n
@@ -86,7 +87,7 @@ class Triangle:
     def mod_triangle(self, k: int) -> list[list[int]]:
         """Calculate the triangle with entries modulo k."""
         return [[val % k for val in row] for row in self.triangle]
-    
+
     def center(self) -> list[int]:
         """Return the middle entries for rows with an odd number of elements."""
         middle_entries = []
@@ -129,10 +130,10 @@ class Triangle:
 
         return diagonal
 
-    def format_triangle(self, highlight_diag=None, highlight_shape=None):
+    def format_triangle(self, highlight_diag=None):
         """Format the triangle for printing with options to highlight specific diagonals or shapes."""
         def is_in_diagonal(row, col, diag):
-            return (row - col == diag) or (col - row == diag)
+            return diag in (row - col, col - row)
 
         def highlight_element(num):
             return f"\033[1m{num}\033[0m"  # Bold text (ANSI escape code)

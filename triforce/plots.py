@@ -1,18 +1,20 @@
 """Plotting for triangles and pyramids."""
 from typing import Callable
-
-from triforce.triangle import Triangle
 import matplotlib.pyplot as plt
 import numpy as np
 
+from triforce.triangle import Triangle
+from triforce.triangles import LucasPascalTriangle
+from triforce.numeric import is_even
 
-def highlight_plot(triangle: Triangle, filter_function: Callable):
+
+def highlight_plot(input_triangle: Triangle, filter_function: Callable):
     """Plot the triangle, highlighting numbers that satisfy the filter function."""
-    n = triangle.n
+    n = input_triangle.n
     grid = np.zeros((n, n), dtype=int)
     for i in range(n):
         for j in range(i + 1):
-            if filter_function(triangle[i][j]):
+            if filter_function(input_triangle[i][j]):
                 grid[i, j] = 1
 
     plt.figure(figsize=(6, 6))
@@ -22,9 +24,4 @@ def highlight_plot(triangle: Triangle, filter_function: Callable):
 
 
 if __name__ == "__main__":
-    from triforce.triangles import *
-    from triforce.numeric import *
-
-    n = 510
-    triangle = LucasPascalTriangle(n)
-    highlight_plot(triangle, is_even)
+    highlight_plot(LucasPascalTriangle(n=510), is_even)

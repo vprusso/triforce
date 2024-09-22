@@ -12,6 +12,7 @@ from triforce.triangles import (
 
 
 def test_bell_triangle():
+    """Tests for Bell Triangle."""
     bell_triangle = BellTriangle(5)
     expected = [
         [1],
@@ -24,6 +25,7 @@ def test_bell_triangle():
 
 
 def test_catalan_triangle():
+    """Tests for Catalan Triangle."""
     catalan_triangle = CatalanTriangle(4)
     expected = [
         [1],
@@ -35,6 +37,7 @@ def test_catalan_triangle():
 
 
 def test_floyds_triangle():
+    """Tests for Floyd Triangle."""
     floyd_triangle = FloydsTriangle(4)
     expected = [
         [1],
@@ -46,6 +49,7 @@ def test_floyds_triangle():
 
 
 def test_hosoya_triangle():
+    """Tests for Hosoyoa Triangle."""
     hosoya_triangle = HosoyaTriangle(5)
     expected = [
         [1],
@@ -58,6 +62,7 @@ def test_hosoya_triangle():
 
 
 def test_pascal_triangle():
+    """Tests for Pascal Triangle."""
     pascal_triangle = PascalTriangle(5)
     expected = [
         [1],
@@ -70,6 +75,7 @@ def test_pascal_triangle():
 
 
 def test_fibonacci_pascal_triangle():
+    """Tests for Fibonacci-Pascal Triangle."""
     fib_pascal_triangle = FibonacciPascalTriangle(5)
     expected = [
         [1],
@@ -82,6 +88,7 @@ def test_fibonacci_pascal_triangle():
 
 
 def test_lucas_pascal_triangle():
+    """Tests for Lucas-Pascal Triangle."""
     lucas_pascal_triangle = LucasPascalTriangle(5)
     expected = [
         [1],
@@ -94,6 +101,7 @@ def test_lucas_pascal_triangle():
 
 
 def test_wythoff_triangle():
+    """Tests for Wythoff Triangle."""
     wythoff_triangle = WythoffTriangle(5)
     expected = [
         [1],
