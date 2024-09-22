@@ -1,3 +1,4 @@
+"""Properties of Pascal's triangle."""
 from triforce.triangles import PascalTriangle
 triangle = PascalTriangle(10)
 

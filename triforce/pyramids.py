@@ -27,10 +27,3 @@ class HosoyaPyramid(Pyramid):
                 layer.append(row)
             pyramid.append(layer)
         return pyramid
-
-
-# Create a Pascal Pyramid with 5 layers
-pascal_pyramid = PascalPyramid(6)
-
-# Print the Pascal Pyramid layers
-print(pascal_pyramid)

@@ -91,8 +91,8 @@ that the even and odd terms are replaced by black and white pixels, respectively
 from triforce.plots import highlight_plot
 from triforce.numerics import is_even
 
-triangle = PascalTriangle(n=510, is_even)
-highlight_plot(triangle)
+triangle = PascalTriangle(n=510)
+highlight_plot(triangle, is_even)
 ```
 
 ![even-odd plot for Pascal's triangle](./static/pascal_parity_plot.png)

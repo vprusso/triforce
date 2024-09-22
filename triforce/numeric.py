@@ -37,4 +37,3 @@ def factorial(num: int) -> int:
     for i in range(2, num + 1):
         result *= i
     return result
-

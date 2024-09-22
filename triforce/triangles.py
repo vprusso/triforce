@@ -4,6 +4,7 @@ from triforce.sequences import (
     wythoff_term,
 )
 from triforce.triangle import Triangle
+from math import comb
 
 
 class BellTriangle(Triangle):
@@ -22,17 +23,20 @@ class BellTriangle(Triangle):
 
 
 class CatalanTriangle(Triangle):
-    """Defines Catalan's Triangle: https://en.wikipedia.org/wiki/Catalan%27s_triangle"""
+    """Defines the Catalan Triangle using the combinatorial formula."""
 
     def generate_triangle(self) -> list[list[int]]:
-        """Generate Catalan's triangle up to row n."""
-        triangle = [[1]]  # Initialize with the first row
+        """Generate the Catalan Triangle up to row n."""
+        triangle = []
         
-        for i in range(1, self.n):
-            row = [1]  # The first element of each row is always 1
-            for j in range(1, i + 1):
-                row.append(triangle[i-1][j-1] + row[j-1])
+        for n in range(self.n):
+            row = []
+            for k in range(n + 1):
+                # General formula: C(n, k) = (n-k+1)/(n+1) * binom(n+k, k)
+                catalan_value = (n - k + 1) * comb(n + k, k) // (n + 1)
+                row.append(catalan_value)
             triangle.append(row)
+        
         return triangle
 
 
@@ -124,7 +128,7 @@ class LucasPascalTriangle(Triangle):
         # Initialize the triangle with the first row
         triangle = [[1]]
         
-        # Iteratively generate the Fibonacci-Pascal Triangle for rows 2 to n
+        # Iteratively generate the Lucas-Pascal Triangle for rows 2 to n
         for row_num in range(2, self.n + 1):
             new_row = [lucas(row_num)]  # Start the new row with F(n)
             
@@ -135,7 +139,7 @@ class LucasPascalTriangle(Triangle):
             for i in range(len(last_row) - 1):
                 new_row.append(last_row[i] + last_row[i + 1])
             
-            # Append the Fibonacci value at the end of the row
+            # Append the Lucas value at the end of the row
             new_row.append(lucas(row_num))
             
             # Add the new row to the triangle
@@ -154,13 +158,5 @@ class WythoffTriangle(Triangle):
             row = []
             for j in range(1, i + 1):
                 row.append(wythoff_term(j, i - j + 1))
-            triangle.append(row)
+            triangle.append(row[::-1])
         return triangle
-
-
-triangle = LucasPascalTriangle(10)
-print(triangle)
-print(triangle.row_sums())
-
-
-print(triangle.rising_diagonal_sums())

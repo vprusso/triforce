@@ -13,7 +13,6 @@ class Triangle:
         return self.triangle[key]
 
     def __str__(self):
-        print(self.triangle)
         return self.format_triangle()
 
     def generate_triangle(self) -> list[list[int]]:
@@ -40,7 +39,6 @@ class Triangle:
             diag = self.rising_diagonal(i)
             sums.append(sum(diag))
         return sums
-
 
     def flatten(self) -> list[int]:
         """Flatten the triangle into a 1D list."""

@@ -46,5 +46,3 @@ class Pyramid:
 
             ret += "\n"
         return ret
-
-
