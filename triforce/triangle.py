@@ -2,10 +2,18 @@
 
 class Triangle:
     """Base Triangle class."""
-    def __init__(self, n: int):
-        """Initialize the triangle with n rows."""
-        self.n = n
-        self.triangle = self.generate_triangle()
+    def __init__(self, n: int = None, triangle: list[list[int]] = None):
+        """Initialize the triangle with either n rows or a list of lists."""
+        if triangle is not None:
+            # Use the supplied list of lists as the triangle
+            self.triangle = triangle
+            self.n = len(triangle)
+        elif n is not None:
+            # Generate the triangle based on the number of rows
+            self.n = n
+            self.triangle = self.generate_triangle()
+        else:
+            raise ValueError("Either n or triangle must be provided.")
 
     def __len__(self):
         return len(self.triangle)
@@ -97,6 +105,15 @@ class Triangle:
                 middle_index = len(row) // 2
                 middle_entries.append(row[middle_index])
         return middle_entries
+
+    def hexagonal_centers(self) -> list[list[int]]:
+        ret = []
+        for i in range(2, self.n, 2):
+            centers = []
+            for j in range(1, i, 2):
+                centers.append(self.triangle[i][j])
+            ret.append(centers)
+        return ret
 
     def is_symmetric(self) -> bool:
         """Check if the triangle is symmetric."""

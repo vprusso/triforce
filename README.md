@@ -45,7 +45,7 @@ functionality of triforce to investigate various numerical properties of the tri
 >>> print(triangle.center())
 [1, 2, 6, 20, 70]
 
->>> Extract row sums:
+>>> # Extract row sums:
 >>> print(triangle.row_sums())
 [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
 
@@ -91,8 +91,7 @@ that the even and odd terms are replaced by black and white pixels, respectively
 from triforce.plots import highlight_plot
 from triforce.numerics import is_even
 
-triangle = PascalTriangle(n=510)
-highlight_plot(triangle, is_even)
+highlight_plot(PascalTriangle(n=510), is_even)
 ```
 
 ![even-odd plot for Pascal's triangle](./static/pascal_parity_plot.png)
