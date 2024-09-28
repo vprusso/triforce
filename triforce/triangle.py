@@ -107,6 +107,7 @@ class Triangle:
         return middle_entries
 
     def hexagonal_centers(self) -> list[list[int]]:
+        """Extract hexagonal centers of triangle."""
         ret = []
         for i in range(2, self.n, 2):
             centers = []
