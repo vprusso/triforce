@@ -89,7 +89,7 @@ def compound_wythoff(n: int):
 
 
 def wythoff_term(n: int, k: int) -> int:
-    """OEIS-:"""
+    """Generate the n-th term of the Wythoff array."""
     return (n - 1) * fibonacci(k) + fibonacci(k + 1) * floor(n * PHI)
 
 

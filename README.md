@@ -1,20 +1,13 @@
 triforce
-=====================
-![PyPI - downloads](https://img.shields.io/pypi/dm/triforce.svg?label=Pypi%20downloads)
+=========
+The `triforce` package is suite of tools for the numerical exploration of
+triangular arrays. It allows you to manipulate well-known triangular arrays
+(i.e. Pascal's triangle, the Hosoya triangle, Bell's triangle, etc.) and also
+to define your own triangle via specifying generating functions.
 
-**Contents**
-- [triforce](#triforce)
-  - [Installation](#installation)
-  - [Contributing](#contributing)
-  - [Team](#team)
-  - [Citing](#citing)
-
-Triforce is suite of tools for the numerical exploration of triangular arrays. It allows you to manipulate well-known
-triangular arrays (i.e. Pascal's triangle, the Hosoya triangle, Bell's triangle, etc.) and also to define your own
-triangle via specifying generating functions.
-
-For example, the following code allows you to define Pascal's Triangle for a given number of rows. You can use the
-functionality of triforce to investigate various numerical properties of the triangle.
+For example, the following code allows you to define Pascal's Triangle for a
+given number of rows. You can use the functionality of `triforce` to
+investigate various numerical properties of the triangle.
 
 ```python3
 >>> from triforce.triangles import PascalTriangle
@@ -51,7 +44,8 @@ functionality of triforce to investigate various numerical properties of the tri
 
 ```
 
-You can also define your own triangular array by creating a class that inherits from the `Triangle` class
+You can also define your own triangular array by creating a class that inherits
+from the `Triangle` class
 
 ```python3
 from triforce.triangle import Triangle
@@ -84,8 +78,9 @@ class WythoffTriangle(Triangle):
         return triangle
 ```
 
-One can also visualize properties of the triangles by plotting. Here is an example of visualizing Pascal's triangle such
-that the even and odd terms are replaced by black and white pixels, respectively.
+One can also visualize properties of the triangles by plotting. Here is an
+example of visualizing Pascal's triangle such that the even and odd terms are
+replaced by black and white pixels, respectively.
 
 ```python3
 from triforce.plots import highlight_plot
@@ -95,45 +90,3 @@ highlight_plot(PascalTriangle(n=510), is_even)
 ```
 
 ![even-odd plot for Pascal's triangle](./static/pascal_parity_plot.png)
-
-
-## Installation
-Triforce is available on PyPI, and can be installed with
-```
-pip install triforce
-```
-
-## Contributing
-We appreciate all contributions. You don't need to be an expert in triangular arrays or number theory to help out.
-
-Contributions should be submitted as [pull requests](https://github.com/vprusso/triforce/pulls).  A member of the
-triforce development team will review the pull request and guide you through the contributing process.
-
-## Team
-Triforce is a community project, built from the contributions of many researchers and engineers. Triforce is developed
-and maintained by [Vincent Russo](https://vprusso.github.io/)
-
-## Citing
-
-You can cite `triforce` using the following DOI: X
-
-
-If you are using the `triforce` software package in research work, please include an explicit mention of `triforce` in
-your publication. Something along the lines of:
-
-```
-To solve problem "X" we used `triforce`; a package for studying numerical properties of triangular arrays.
-```
-
-A BibTeX entry that you can use to cite `triforce` is provided here:
-
-```bib
-@misc{triforce,
-   author       = {Vincent Russo},
-   title        = {triforce: A {P}ython toolkit for numerical analysis of triangular arrays},
-   howpublished = {\url{https://github.com/vprusso/triforce}},
-   month        = Dec,
-   year         = 2024,
-   doi          = {X}
- }
-```
